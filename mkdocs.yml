@@ -1,0 +1,49 @@
+site_name: Open Data Engineering Academy
+site_url: https://yourwebsite.com
+
+theme:
+  name: material
+  palette: 
+    scheme: slate
+    primary: indigo
+    accent: blue
+  features:
+    - navgiation.instant
+    - content.code.copy
+    - toc.follow
+
+plugins:
+  - search
+  - callouts           
+  - ezlinks:
+      wikilinks: true
+      warn_ambiguities: false
+  - glightbox:
+      touchNavigation: true
+      loop: false
+      effect: zoom
+      width: 100%
+      zoomable: true
+
+markdown_extensions:
+  - admonition            
+  - pymdownx.details      
+  - pymdownx.superfences     
+  - attr_list                
+  - toc:
+        permalink: true    
+  - footnotes:
+  - abbr:    
+
+nav:
+  - Home: index.md
+  - 'Term 1: Foundational':
+    - 'Syllabus': term-1/index.md
+    - '101 - Data Engineering Fundamentals':
+      - '1. Intro to Data Engineering': term-1/101-data-engineering/01-intro.md
+    - '102 - Python for Data Engineering (Intro)':
+      - '1. Intro to Programming with Python': term-1/102-python-intro/01-intro.md
+    - '103 - SQL for Analysis (Intro)':
+      - '1. Intro to SQL': term-1/103-sql-intro/01-intro.md
+    - '104 - Developer Toolkit':
+      - '1. Introduction to Development': term-1/104-developer-toolkit/01-intro.md

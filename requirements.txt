@@ -1,5 +1,0 @@
-mkdocs
-mkdocs-material
-mkdocs-callouts
-mkdocs-roamlinks-plugin
-mkdocs-glightbox

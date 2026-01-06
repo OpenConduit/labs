@@ -15,8 +15,6 @@ USER ${NB_UID}
 # Install Python Libraries
 RUN pip install --no-cache-dir \
     jupysql \
-    duckdb \
-    duckdb-engine \
     pandas \
     polars \
     pyarrow \

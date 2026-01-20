@@ -1,0 +1,46 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: db_int_opt
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-db_int_opt}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d db_int_opt"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+      - db_int_opt
+
+  jupyter:
+    build: ./jupyter
+    container_name: db_int_opt_jup
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/notebooks
+      - ./data:/home/jovyan/data
+    environment:
+      POSTGRES_HOST: postgres
+      POSTGRES_USER: ${POSTGRES_USER:-admin}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_DB: ${POSTGRES_DB:-de_one}
+      JUPYTER_TOKEN: ${JUPYTER_TOKEN:-dataengineer}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - db_int_opt
+
+volumes:
+  pg_data:
+
+networks:
+  db_int_opt:
